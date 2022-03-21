@@ -1,0 +1,21 @@
+drop table funcionarios;
+create table funcionarios(
+nome varchar(50),
+sobrenome varchar(50),
+idade integer,
+sexo varchar(30)
+);
+drop table produtos;
+create table produtos(
+nome varchar(100),
+dataValidade date,
+codigoDeBarras integer,
+fabrincante varchar(200)
+);
+drop table estoque;
+create table estoque(
+produto varchar(50),
+quantidade integer,
+lote integer,
+fabricante varchar(30)
+);
