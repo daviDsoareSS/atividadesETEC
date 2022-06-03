@@ -1,3 +1,6 @@
+--@autor DAVID SOARES SILVA 2.MODULO ETEC Zona Leste
+-- 03/06/2022
+
 
 drop table livro CASCADE;
 drop table emprestimo CASCADE;
