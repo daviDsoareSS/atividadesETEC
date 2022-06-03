@@ -60,8 +60,8 @@ SELECT livro.titulo,
 c.nome,
 e.dataEmp,
 e.dataDev FROM emprestimo e
-JOIN livro livro ON e.id_livro = livro.id_livro 
-JOIN colegas c ON c.id_amigo = e.id_amigo
+LEFT JOIN livro livro ON e.id_livro = livro.id_livro 
+LEFT JOIN colegas c ON c.id_amigo = e.id_amigo
 WHERE e.dataDev IS NULL;
 
  
