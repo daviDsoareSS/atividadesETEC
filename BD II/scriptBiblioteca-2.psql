@@ -1,0 +1,69 @@
+
+drop table livro CASCADE;
+drop table emprestimo CASCADE;
+drop table colegas CASCADE;
+
+
+create table livro( 
+    id_livro serial not null PRIMARY KEY, 
+    titulo varchar(225) NOT NULL 
+
+);
+create table colegas( 
+    id_amigo serial not null PRIMARY KEY, 
+    nome varchar(225) NOT NULL, 
+    idade integer NOT NULL 
+
+);
+create table emprestimo( 
+    idEmprestimo serial not null PRIMARY KEY, 
+    dataEmp DATE, 
+    dataDev DATE, 
+    id_amigo int NOT NULL REFERENCES colegas(id_amigo), 
+    id_livro int NOT NULL REFERENCES livro(id_livro) 
+);
+
+INSERT INTO livro (id_livro, titulo) VALUES (DEFAULT, 'Sete Ossos');
+INSERT INTO livro (id_livro, titulo) VALUES (DEFAULT, 'Sete Ossos'); 
+INSERT INTO livro (id_livro, titulo) VALUES (DEFAULT, 'A Cabana');
+INSERT INTO livro (id_livro, titulo) VALUES (DEFAULT, 'A Cabana'); 
+INSERT INTO livro (id_livro, titulo) VALUES (DEFAULT, 'O Homem de Giz');
+INSERT INTO livro (id_livro, titulo) VALUES (DEFAULT, 'O Homem de Giz');
+INSERT INTO livro (id_livro, titulo) VALUES (DEFAULT, 'O Meu Pe de Laranja Lima');
+INSERT INTO livro (id_livro, titulo) VALUES (DEFAULT, 'O Meu Pe de Laranja Lima'); 
+INSERT INTO livro (id_livro, titulo) VALUES (DEFAULT, 'A menina que roubava livros');
+
+
+INSERT INTO colegas (id_amigo, nome, idade ) VALUES (DEFAULT, 'David', 18);
+INSERT INTO colegas (id_amigo, nome, idade ) VALUES (DEFAULT, 'Maria', 19);
+INSERT INTO colegas (id_amigo, nome, idade ) VALUES (DEFAULT, 'Julia', 17); 
+INSERT INTO colegas (id_amigo, nome, idade ) VALUES (DEFAULT, 'Guilherme', 20);
+INSERT INTO colegas (id_amigo, nome, idade ) VALUES (DEFAULT, 'Cris', 38);
+INSERT INTO colegas (id_amigo, nome, idade ) VALUES (DEFAULT, 'Diego', 17);
+INSERT INTO colegas (id_amigo, nome, idade ) VALUES (DEFAULT, 'Patricia', 37); 
+INSERT INTO colegas (id_amigo, nome, idade ) VALUES (DEFAULT, 'Carlos', 45);
+INSERT INTO colegas (id_amigo, nome, idade ) VALUES (DEFAULT, 'Joao', 12);
+
+
+INSERT INTO emprestimo (idEmprestimo,dataEmp, dataDev, id_amigo, id_livro) VALUES (DEFAULT, '2022-1-1', null, 6, 1); 
+INSERT INTO emprestimo (idEmprestimo,dataEmp, dataDev, id_amigo, id_livro) VALUES (DEFAULT, '2021-1-10', null, 6, 1); 
+INSERT INTO emprestimo (idEmprestimo,dataEmp, dataDev, id_amigo, id_livro) VALUES (DEFAULT, '2020-8-4', '2020-9-4', 7, 4); 
+INSERT INTO emprestimo (idEmprestimo,dataEmp, dataDev, id_amigo, id_livro) VALUES (DEFAULT, '2019-5-15', '2019-6-15', 8, 3); 
+INSERT INTO emprestimo (idEmprestimo,dataEmp, dataDev, id_amigo, id_livro) VALUES (DEFAULT, '2022-06-02', null, 8, 3);
+INSERT INTO emprestimo (idEmprestimo,dataEmp, dataDev, id_amigo, id_livro) VALUES (DEFAULT, '2018-7-12', '2018-7-12', 5, 3); 
+INSERT INTO emprestimo (idEmprestimo,dataEmp, dataDev, id_amigo, id_livro) VALUES (DEFAULT, '2022-2-1', null, 4, 2);
+INSERT INTO emprestimo (idEmprestimo,dataEmp, dataDev, id_amigo, id_livro) VALUES (DEFAULT, '2021-4-10', '2021-5-10', 2, 2);
+INSERT INTO emprestimo (idEmprestimo,dataEmp, dataDev, id_amigo, id_livro) VALUES (DEFAULT, '2022-3-2', null, 1, 3);
+ 
+
+SELECT livro.titulo,
+c.nome,
+e.dataEmp,
+e.dataDev FROM emprestimo e
+JOIN livro livro ON e.id_livro = livro.id_livro 
+JOIN colegas c ON c.id_amigo = e.id_amigo
+WHERE e.dataDev IS NULL;
+
+ 
+
+SELECT nome FROM colegas ORDER BY nome ASC;
